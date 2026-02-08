@@ -59,7 +59,7 @@ export default function HowItWorks() {
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="section-title hiw-section-title">Reclaim your focus in One simple step. Pull does the rest.</h2>
+                    <h2 className="section-title">Just One Simple Step</h2>
                 </motion.div>
 
                 <div className="how-it-works-cards">

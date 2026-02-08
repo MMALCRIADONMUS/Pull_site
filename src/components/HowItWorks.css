@@ -1,11 +1,5 @@
 /* How It Works Section */
-.hiw-section-title {
-    font-size: 16px !important;
-    text-align: left !important;
-    font-weight: 400 !important;
-    margin-bottom: 40px !important;
-    width: 100%;
-}
+/* How It Works Section */
 
 .how-it-works-cards {
     display: grid;
