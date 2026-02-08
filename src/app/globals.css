@@ -882,10 +882,20 @@ a {
 }
 
 .manifesto-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+  white-space: nowrap;
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 700;
   color: var(--color-text-primary);
   margin-bottom: 24px;
+}
+
+.manifesto-title-group {
+  display: flex;
+  align-items: center;
 }
 
 .text-push {
@@ -902,8 +912,8 @@ a {
   font-size: clamp(16px, 1.25vw, 20px);
   line-height: 1.8;
   color: rgba(0, 0, 0, 0.6);
-  max-width: 720px;
-  margin: 0 auto 32px;
+  margin: 0 0 32px;
+  text-align: left;
 }
 
 .manifesto-intro-highlight {
@@ -1116,17 +1126,7 @@ a {
   }
 
   @media (max-width: 480px) {
-    .manifesto-title {
-      flex-wrap: wrap;
-      gap: 8px;
-      white-space: normal;
-    }
-
-    .manifesto-title-group {
-      width: auto;
-      justify-content: center !important;
-      margin: 0 !important;
-    }
+    /* Kept empty or removed wrapping logic */
   }
 
   .manifesto-intro {

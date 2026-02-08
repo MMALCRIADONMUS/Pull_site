@@ -85,14 +85,19 @@ export default function Manifesto() {
                     </p>
                 </div>
 
-                {/* Expanded Content */}
+                {/* Initial Visible Section */}
+                <div className="manifesto-section" style={!isExpanded ? { borderBottom: 'none', paddingBottom: 0, marginBottom: 0 } : undefined}>
+                    <h3>The Attention Economy Is Breaking You</h3>
+                    <p>
+                        Meta. Google. TikTok. X. They don't sell products—they sell <em>you</em>.
+                        Your eyes. Your time. Your interrupted thoughts. Your ability to be present.
+                    </p>
+
+                </div>
+
+                {/* Expandable Content */}
                 <div className={`manifesto-content ${isExpanded ? 'expanded' : ''}`}>
                     <div className="manifesto-section">
-                        <h3>The Attention Economy Is Breaking You</h3>
-                        <p>
-                            Meta. Google. TikTok. X. They don't sell products—they sell <em>you</em>.
-                            Your eyes. Your time. Your interrupted thoughts. Your ability to be present.
-                        </p>
                         <p>
                             You pay for it with fragmented concentration, silent anxiety at every vibration,
                             abandoned conversations, and the inability to simply... <em>be</em>.
@@ -102,9 +107,6 @@ export default function Manifesto() {
                                 been able to capture the attention of 2 billion people."</p>
                             <cite>— Tristan Harris, former Google engineer</cite>
                         </blockquote>
-                    </div>
-
-                    <div className="manifesto-section">
                         <h3>They Know The Poison</h3>
                         <p>
                             Silicon Valley executives ban phones at their children's schools.
