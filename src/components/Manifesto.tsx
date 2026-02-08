@@ -32,22 +32,11 @@ export default function Manifesto() {
             <div className="manifesto-card">
                 {/* Collapsed Header - Always Visible */}
                 <div className="manifesto-header" style={{ minHeight: '300px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                    <h2 ref={containerRef} className="manifesto-title" style={{
-                        display: 'flex',
-                        flexWrap: 'nowrap',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: 'clamp(32px, 6vw, 76px)',
-                        lineHeight: 1.1,
-                        width: '100%',
-                        maxWidth: '1000px',
-                        margin: '0 auto',
-                        whiteSpace: 'nowrap'
-                    }}>
+                    <h2 ref={containerRef} className="manifesto-title">
                         {/* Group 1: They [rotating] */}
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', width: '45%' }}>
+                        <div className="manifesto-title-group group-they">
                             <span>They</span>
-                            <div style={{ width: '3.5em', display: 'flex', justifyContent: 'flex-start', marginLeft: '0.2em' }}>
+                            <div className="manifesto-rotating-wrapper">
                                 <RotatingText
                                     ref={theyRef}
                                     texts={['push', 'invade', 'control', 'disrupt']}
@@ -67,9 +56,9 @@ export default function Manifesto() {
                         {/* Spacer/Gap can be adjusted here if needed */}
 
                         {/* Group 2: You [rotating] */}
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '45%', marginLeft: '0.5em' }}>
+                        <div className="manifesto-title-group group-you">
                             <span>You</span>
-                            <div style={{ width: '3.5em', display: 'flex', justifyContent: 'flex-start', marginLeft: '0.2em' }}>
+                            <div className="manifesto-rotating-wrapper">
                                 <RotatingText
                                     ref={youRef}
                                     texts={['pull', 'intend', 'choose', 'focus']}
@@ -90,14 +79,7 @@ export default function Manifesto() {
                         </div>
                     </h2>
 
-                    <p className="manifesto-intro" style={{
-                        marginTop: '40px',
-                        maxWidth: '800px',
-                        textAlign: 'center',
-                        color: 'var(--color-text-secondary)',
-                        fontSize: '1.1rem',
-                        lineHeight: 1.6
-                    }}>
+                    <p className="manifesto-intro">
                         Your attention has been hijacked. Every push-notification is an invasion—systems designed
                         to capture your focus and profit from your distraction. You didn't choose this. They chose you as their product.
                     </p>
