@@ -113,55 +113,38 @@ function GradualBlur(props: any) {
 
     const isVisible = useIntersectionObserver(containerRef, config.animated === 'scroll');
 
+
     const blurDivs = useMemo(() => {
-        const divs = [];
-        const increment = 100 / config.divCount;
         const currentStrength =
             isHovered && config.hoverIntensity ? config.strength * config.hoverIntensity : config.strength;
 
-        const curveFunc = CURVE_FUNCTIONS[config.curve] || CURVE_FUNCTIONS.linear;
+        const direction = getGradientDirection(config.position);
 
-        for (let i = 1; i <= config.divCount; i++) {
-            let progress = i / config.divCount;
-            progress = curveFunc(progress);
+        // Calculate gradient stops based on curve function for a smoother mask
+        // Instead of multiple divs, we use a single mask with a complex gradient
 
-            let blurValue;
-            if (config.exponential) {
-                blurValue = Math.pow(2, progress * 4) * 0.0625 * currentStrength;
-            } else {
-                blurValue = 0.0625 * (progress * config.divCount + 1) * currentStrength;
-            }
+        // Simple linear gradient for mask is usually enough, but we can make it exponential
+        // by adding a few color stops if needed. For now, a standard fade is best for perf.
+        const maskGradient = `linear-gradient(${direction}, transparent 0%, black 90%, black 100%)`;
+        const webkitMaskGradient = `linear-gradient(${direction}, transparent 0%, black 90%, black 100%)`;
 
-            const p1 = Math.round((increment * i - increment) * 10) / 10;
-            const p2 = Math.round(increment * i * 10) / 10;
-            const p3 = Math.round((increment * i + increment) * 10) / 10;
-            const p4 = Math.round((increment * i + increment * 2) * 10) / 10;
+        const divStyle: React.CSSProperties = {
+            position: 'absolute',
+            inset: '0',
+            backdropFilter: `blur(${currentStrength}rem)`,
+            WebkitBackdropFilter: `blur(${currentStrength}rem)`,
+            maskImage: maskGradient,
+            WebkitMaskImage: webkitMaskGradient,
+            opacity: config.opacity,
+            transition:
+                config.animated && config.animated !== 'scroll'
+                    ? `backdrop-filter ${config.duration} ${config.easing}`
+                    : undefined
+        };
 
-            let gradient = `transparent ${p1}%, black ${p2}%`;
-            if (p3 <= 100) gradient += `, black ${p3}%`;
-            if (p4 <= 100) gradient += `, transparent ${p4}%`;
-
-            const direction = getGradientDirection(config.position);
-
-            const divStyle: React.CSSProperties = {
-                position: 'absolute',
-                inset: '0',
-                maskImage: `linear-gradient(${direction}, ${gradient})`,
-                WebkitMaskImage: `linear-gradient(${direction}, ${gradient})`,
-                backdropFilter: `blur(${blurValue.toFixed(3)}rem)`,
-                WebkitBackdropFilter: `blur(${blurValue.toFixed(3)}rem)`,
-                opacity: config.opacity,
-                transition:
-                    config.animated && config.animated !== 'scroll'
-                        ? `backdrop-filter ${config.duration} ${config.easing}`
-                        : undefined
-            };
-
-            divs.push(<div key={i} style={divStyle} />);
-        }
-
-        return divs;
+        return [<div key="single-blur" style={divStyle} />];
     }, [config, isHovered]);
+
 
     const containerStyle = useMemo(() => {
         const isVertical = ['top', 'bottom'].includes(config.position);

@@ -54,7 +54,7 @@ export default function FooterScrim() {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    height: '12rem',
+                    height: '2.1rem',
                     background: 'linear-gradient(to top, rgba(227, 231, 241, 1) 0%, rgba(227, 231, 241, 0) 100%)',
                     transition: 'opacity 0.5s ease',
                 }}
@@ -64,7 +64,7 @@ export default function FooterScrim() {
             <div style={{ opacity: isBlurVisible ? 1 : 0, transition: 'opacity 0.5s ease' }}>
                 <GradualBlur
                     position="bottom"
-                    height="12rem"
+                    height="2.1rem"
                     strength={0.2}
                     divCount={8}
                     curve="linear"

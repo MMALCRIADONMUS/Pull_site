@@ -211,9 +211,29 @@ a {
 }
 
 /* Ensure content sits above the gradient */
+/* Ensure content sits above the gradient */
 .main-card>*:not(.main-card-gradient) {
   position: relative;
   z-index: 2;
+}
+
+/* Header Scrim - Responsive Top Gradient */
+.header-scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, #00379D 0%, rgba(0, 55, 157, 0) 100%);
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .header-scrim {
+    display: none;
+  }
 }
 
 /* Hero Section */
@@ -591,6 +611,11 @@ a {
   }
 }
 
+/* Base state: Hide mobile-only elements on desktop */
+.mobile-only {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .navbar {
     position: fixed;
@@ -600,65 +625,74 @@ a {
     gap: 16px;
     top: 16px;
     z-index: 1002;
+    display: flex !important;
+    /* Re-enable navbar */
+    pointer-events: none;
+    /* Container itself shouldn't take clicks */
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .navbar-logo,
+  .navbar-spacer,
+  .navbar-link {
+    display: none !important;
   }
 
   /* When scrolled on mobile, hide other links and style as collapsed pill */
   .navbar-card-visible .navbar-links {
     gap: 0;
     justify-content: center;
+    width: 100%;
+    pointer-events: none;
+    /* Ensure container clicks fall through */
   }
 
-  .navbar-card-visible .navbar-link:not(.navbar-link--download) {
-    display: none;
+  /* Hide normal links and the desktop download button */
+  .navbar-card-visible .navbar-link,
+  .navbar-link.desktop-only {
+    display: none !important;
   }
 
+  .navbar-card,
   .navbar-card-visible {
-    padding: 6px;
-    width: auto;
-    /* Shrink to fit button */
-    background: transparent;
-    /* Keep transparent or specific bg? User said "fixed button" */
-    border: none;
-    /* Clean look */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
-  .navbar-card-visible .navbar-link--download {
-    padding: 10px 20px;
-    background: var(--color-download);
-    color: white;
+  /* Show and style mobile Google Play button */
+  .navbar-card-visible .navbar-google-play.mobile-only {
+    display: flex !important;
+    padding: 12px 24px;
+    background: #FCFCFC;
+    border: 1px solid #E5E5E5;
     border-radius: 40px;
-    font-weight: 600;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: var(--color-text-primary);
+    margin: 0 auto;
+    /* Center it */
+
+    /* Animation State: Hidden by default */
+    opacity: 0;
+    transform: translateY(-50px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  .navbar-logo {
-    display: none;
-  }
-
-  .navbar-card {
-    width: 100%;
-    justify-content: center;
-    padding: 10px 20px;
-    transition: all 0.3s ease;
-  }
-
-  .navbar-links {
-    gap: 16px;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .navbar-link {
-    font-size: 13px;
-    /* Slightly smaller text */
-  }
-
-  .navbar-link--download {
-    padding: 8px 16px;
-    font-size: 13px;
+  /* Active state for sticky button */
+  .navbar-card-visible .navbar-google-play.mobile-only.mobile-sticky-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .main-card {
-    margin: 80px 10px 0;
+    margin: 20px 10px 0;
     /* Reduced margin */
     border-width: 8px;
     width: calc(100% - 20px);
@@ -672,7 +706,7 @@ a {
   }
 
   .hero {
-    padding: 80px 20px 0;
+    padding: 40px 20px 0;
     /* Reduced top padding to move title higher */
     /* Top padding clears navbar */
     min-height: auto;

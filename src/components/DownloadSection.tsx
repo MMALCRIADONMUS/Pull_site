@@ -37,7 +37,7 @@ export default function DownloadSection() {
                 </Link>
 
                 <div className="social-proof-container" style={{ marginTop: '10px', textAlign: 'center' }}>
-                    <div className="stars" style={{ display: 'flex', justifyContent: 'center', gap: '2px', color: '#FFD700', marginBottom: '8px' }}>
+                    <div className="stars" style={{ display: 'flex', justifyContent: 'center', gap: '2px', color: '#000000', marginBottom: '8px' }}>
                         {[...Array(5)].map((_, i) => (
                             <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />

@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("");
+    const [showMobileSticky, setShowMobileSticky] = useState(false);
 
     useEffect(() => {
         let ticking = false;
@@ -42,11 +44,34 @@ export default function Navbar() {
             }
         });
 
+        // Sticky Mobile Button Observer
+        const heroBtnObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // If hero button is NOT intersecting and we are scrolled down (bounding rect top < 0), show sticky
+                // Actually simpler: if it's not intersecting, and we are below it?
+                // Better: Check if we are past the hero button.
+
+                // If entry.isIntersecting is false, it means it's off screen. 
+                // We want to know if it's off screen to the TOP.
+                if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+                    setShowMobileSticky(true);
+                } else {
+                    setShowMobileSticky(false);
+                }
+            });
+        }, { threshold: 0 });
+
+        const heroBtn = document.getElementById('hero-google-play-btn');
+        if (heroBtn) {
+            heroBtnObserver.observe(heroBtn);
+        }
+
         window.addEventListener('scroll', handleScroll, { passive: true });
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
             observer.disconnect();
+            heroBtnObserver.disconnect();
         };
     }, []);
 
@@ -100,13 +125,35 @@ export default function Navbar() {
                         >
                             How it Works
                         </Link>
+
+                        {/* Desktop Download Button */}
                         <Link
                             href="https://play.google.com/store/apps/details?id=com.pull.notifications"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="navbar-link navbar-link--download"
+                            className="navbar-link navbar-link--download desktop-only"
                         >
                             Download
+                        </Link>
+
+                        {/* Mobile Google Play Button */}
+                        <Link
+                            href="https://play.google.com/store/apps/details?id=com.pull.notifications"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`google-play-button navbar-google-play mobile-only ${showMobileSticky ? 'mobile-sticky-visible' : ''}`}
+                        >
+                            <Image
+                                src="/google-play-icon.png"
+                                alt="Google Play"
+                                width={24}
+                                height={24}
+                                className="google-play-icon"
+                            />
+                            <div className="google-play-text">
+                                <span>GET IT ON</span>
+                                <span>Google Play</span>
+                            </div>
                         </Link>
                     </div>
                 </div>

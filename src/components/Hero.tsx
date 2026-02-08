@@ -74,6 +74,7 @@ export default function Hero() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="google-play-button"
+                        id="hero-google-play-btn"
                     >
                         <Image
                             src="/google-play-icon.png"
