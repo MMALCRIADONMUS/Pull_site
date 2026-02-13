@@ -131,14 +131,16 @@ export default function Hero() {
                         <BackgroundEffect />
                     </div>
                     <video
-                        src="/assets/appvideo.webm"
                         autoPlay
                         loop
                         muted
                         playsInline
                         className="ellipse-screen-image"
                         style={{ objectFit: "cover" }}
-                    />
+                    >
+                        <source src="/assets/appvideo.mov" type='video/mp4; codecs="hvc1"' />
+                        <source src="/assets/appvideo.webm" type="video/webm" />
+                    </video>
                 </div>
             </div>
         </section>
