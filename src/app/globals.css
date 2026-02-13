@@ -1154,3 +1154,86 @@ a {
     font-size: 13px;
   }
 }
+
+/* Mobile Navbar Override for Help/Terms pages */
+@media (max-width: 768px) {
+  .navbar.navbar-mobile-override {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 32px);
+    max-width: 100%;
+    padding: 0;
+    z-index: 1002;
+    background: transparent !important;
+    pointer-events: none;
+    /* Let clicks pass through container */
+  }
+
+  .navbar.navbar-mobile-override .navbar-logo {
+    display: block !important;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    pointer-events: auto;
+    margin-right: 12px;
+  }
+
+  .navbar.navbar-mobile-override .navbar-card {
+    display: flex !important;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 16px;
+    background: var(--color-card-fill) !important;
+    border: 1px solid var(--color-card-stroke) !important;
+    border-radius: var(--radius-navbar);
+    pointer-events: auto;
+    width: auto;
+    /* Allow it to size to content or specific width */
+    max-width: calc(100% - 60px);
+    /* Leave room for logo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .navbar.navbar-mobile-override .navbar-card-visible {
+    background: var(--color-card-fill) !important;
+    border-color: var(--color-card-stroke) !important;
+  }
+
+  .navbar.navbar-mobile-override .navbar-links {
+    display: flex !important;
+    gap: 16px;
+    width: auto;
+    overflow-x: auto;
+    padding-right: 4px;
+    /* Space for scrolling */
+    pointer-events: auto;
+    justify-content: flex-start;
+    /* Align start for scrolling */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Hide scrollbar Firefox */
+  }
+
+  .navbar.navbar-mobile-override .navbar-links::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar Chrome/Safari */
+  }
+
+  .navbar.navbar-mobile-override .navbar-link {
+    display: block !important;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 1;
+    pointer-events: auto;
+    padding: 4px 0;
+  }
+
+  .navbar.navbar-mobile-override .navbar-spacer {
+    display: none !important;
+  }
+}

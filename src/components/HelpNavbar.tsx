@@ -64,7 +64,7 @@ export default function HelpNavbar() {
     return (
         <>
             {/* Layer 1: Low Z-Index (Z=1) - Background styling */}
-            <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`} style={{ zIndex: 1, pointerEvents: 'none' }}>
+            <nav className={`navbar navbar-mobile-override ${isScrolled ? 'navbar-scrolled' : ''}`} style={{ zIndex: 1, pointerEvents: 'none' }}>
                 <Link href="/" className="navbar-logo" style={{ pointerEvents: 'auto' }}>
                     Pull
                 </Link>
@@ -82,7 +82,7 @@ export default function HelpNavbar() {
             </nav>
 
             {/* Layer 2: High Z-Index (Z=1002) - Interactive Links */}
-            <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`} style={{ zIndex: 1002, pointerEvents: 'none' }}>
+            <nav className={`navbar navbar-mobile-override ${isScrolled ? 'navbar-scrolled' : ''}`} style={{ zIndex: 1002, pointerEvents: 'none' }}>
                 {/* Invisible Logo spacer */}
                 <div className="navbar-logo" style={{ opacity: 0 }}>
                     Pull

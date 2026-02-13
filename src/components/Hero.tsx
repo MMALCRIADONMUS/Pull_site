@@ -130,13 +130,14 @@ export default function Hero() {
                     }}>
                         <BackgroundEffect />
                     </div>
-                    <Image
-                        src="/screen.png"
-                        alt="Pull App Screenshot"
-                        width={400}
-                        height={500}
+                    <video
+                        src="/assets/appvideo.webm"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                         className="ellipse-screen-image"
-                        priority
+                        style={{ objectFit: "cover" }}
                     />
                 </div>
             </div>
