@@ -18,6 +18,8 @@ export default function Hero() {
     const textOffset = useTransform(scrollY, [0, 1000], ["65%", "75%"]); // Moves text along curve
 
 
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+
     useEffect(() => {
         // Create audio element for notification sound
         audioRef.current = new Audio("data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgqMbVsHxMNiltkruznGc9LTdqqcPNpmI0KS5jlbXGqGxAMzFlnrzNqnFEMTJqm7nErHZHNDRonbfDpnVFMjFknrnBq3ZIODdqobnCq3hHNzVmobm+rHlJODhnn7q+rHxJODlnobq/rn5LOjtpoLy/sH9MOzppor+/sn9POzxrpL/Bs4FQPT5spsDDtIRSPz9up8HEtoVUP0BvqMLFuIdWQEFwqsPHuYlXQkJxq8TIu4tZQ0NyrMXJvYxaREVzrsbLvo1cRUZ0r8fMwI5eRkd1sMjNwZBfR0h2scnOw5FhSEl3ssnPxJJiSUp4s8rQxpRkSkx5tMvSx5VlS016tcvTyJdnTE57tszbyphmTU99uszTyppqTlF+uM3b0JlrT1F/uM7c0ZttT1J/uc7c0pxuUFOAuc/c05xwUFOAu8/bz5xxUVSBu9Db");
@@ -31,7 +33,22 @@ export default function Hero() {
             }
         }, 800);
 
-        return () => clearTimeout(timer);
+        const handleFirstScroll = () => {
+            if (videoRef.current) {
+                videoRef.current.play().catch((error) => {
+                    console.log("Video play failed on scroll:", error);
+                });
+                // Remove listener after first attempt
+                window.removeEventListener('scroll', handleFirstScroll);
+            }
+        };
+
+        window.addEventListener('scroll', handleFirstScroll);
+
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener('scroll', handleFirstScroll);
+        };
     }, []);
 
     return (
@@ -125,6 +142,7 @@ export default function Hero() {
                         // Clean implementation without masks or clipping
                     }}>
                         <video
+                            ref={videoRef}
                             autoPlay
                             loop
                             muted
