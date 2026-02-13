@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ignore large video files
+*prores*.mov
+public/assets/appvideo_prores.mov
+public/assets/appvideo_prores_alpha.mov
+public/assets/appvideo_prores.mov
+public/assets/appvideo_prores_alpha.mov

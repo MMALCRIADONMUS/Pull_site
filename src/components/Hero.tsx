@@ -118,29 +118,28 @@ export default function Hero() {
                 </div>
 
                 <div className="cutout-ellipse">
-                    <div style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        zIndex: -1,
-                        opacity: 1,
-                        pointerEvents: 'none',
+                    <div className="ellipse-screen-image-container" style={{
+                        width: '411px',
+                        position: 'relative',
+                        zIndex: 10,
+                        // Clean implementation without masks or clipping
                     }}>
-                        <BackgroundEffect />
+                        <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            style={{
+                                width: '100%',
+                                height: 'auto',
+                                display: 'block',
+                                objectFit: 'contain',
+                            }}
+                        >
+                            <source src="/assets/appvideo_prores_alpha.mov" type='video/mp4; codecs="hvc1"' />
+                            <source src="/assets/appvideo.webm" type="video/webm" />
+                        </video>
                     </div>
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="ellipse-screen-image"
-                        style={{ objectFit: "cover" }}
-                    >
-                        <source src="/assets/appvideo.mov" type='video/mp4; codecs="hvc1"' />
-                        <source src="/assets/appvideo.webm" type="video/webm" />
-                    </video>
                 </div>
             </div>
         </section>

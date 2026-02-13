@@ -432,9 +432,7 @@ a {
 }
 
 .ellipse-screen-image {
-  width: 411px !important;
-  height: auto !important;
-  object-fit: contain;
+  /* Removed width/height overrides as they are now handled by container/mask logic */
   pointer-events: auto;
 }
 
