@@ -80,7 +80,17 @@ export default function Navbar() {
             e.preventDefault();
             const element = document.querySelector(href);
             if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+                if (href === '#waitlist') {
+                    const html = document.documentElement;
+                    const originalScrollBehavior = html.style.scrollBehavior;
+                    html.style.scrollBehavior = 'auto';
+                    element.scrollIntoView({ behavior: 'auto' });
+                    setTimeout(() => {
+                        html.style.scrollBehavior = originalScrollBehavior;
+                    }, 50);
+                } else {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         }
     };
@@ -97,7 +107,8 @@ export default function Navbar() {
                     <div className="navbar-links">
                         <Link href="#manifesto" className="navbar-link">Manifesto</Link>
                         <Link href="#how-it-works" className="navbar-link">How it Works</Link>
-                        <Link href="#" className="navbar-link navbar-link--download">Download</Link>
+                        {/* <Link href="#" className="navbar-link navbar-link--download">Download</Link> */}
+                        <Link href="#waitlist" className="navbar-link navbar-link--download">Notify Me</Link>
                     </div>
                 </div>
                 <div className="navbar-spacer" />
@@ -127,6 +138,7 @@ export default function Navbar() {
                         </Link>
 
                         {/* Desktop Download Button */}
+                        {/*
                         <Link
                             href="https://play.google.com/store/apps/details?id=com.pull.notifications"
                             target="_blank"
@@ -135,8 +147,17 @@ export default function Navbar() {
                         >
                             Download
                         </Link>
+                        */}
+                        <Link
+                            href="#waitlist"
+                            className="navbar-link navbar-link--download desktop-only"
+                            onClick={(e) => handleNavClick(e, '#waitlist')}
+                        >
+                            Notify Me
+                        </Link>
 
                         {/* Mobile Google Play Button */}
+                        {/*
                         <Link
                             href="https://play.google.com/store/apps/details?id=com.pull.notifications"
                             target="_blank"
@@ -154,6 +175,15 @@ export default function Navbar() {
                                 <span>GET IT ON</span>
                                 <span>Google Play</span>
                             </div>
+                        </Link>
+                        */}
+                        <Link
+                            href="#waitlist"
+                            className={`google-play-button navbar-google-play mobile-only ${showMobileSticky ? 'mobile-sticky-visible' : ''}`}
+                            onClick={(e) => handleNavClick(e, '#waitlist')}
+                            style={{ background: 'var(--color-download, #00379D)', color: 'white', border: 'none', padding: '12px 24px' }}
+                        >
+                            <span style={{ fontSize: '1rem', fontWeight: 600 }}>Notify Me</span>
                         </Link>
                     </div>
                 </div>

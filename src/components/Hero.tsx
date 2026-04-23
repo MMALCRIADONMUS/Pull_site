@@ -86,6 +86,8 @@ export default function Hero() {
                 </motion.div>
 
                 <div className="download-section">
+                    {/* TEMPORARY WAITLIST CTA - Revert in two weeks */}
+                    {/*
                     <Link
                         href="https://play.google.com/store/apps/details?id=com.pull.notifications"
                         target="_blank"
@@ -104,6 +106,28 @@ export default function Hero() {
                             <span>Download on</span>
                             <span>Google Play</span>
                         </div>
+                    </Link>
+                    */}
+                    <Link
+                        href="#waitlist"
+                        className="google-play-button"
+                        id="hero-google-play-btn"
+                        style={{ background: 'var(--color-download, #00379D)', color: 'white', border: 'none', padding: '18px 40px', boxShadow: '0 8px 24px rgba(0, 55, 157, 0.25)' }}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            const element = document.querySelector('#waitlist');
+                            if (element) {
+                                const html = document.documentElement;
+                                const originalScrollBehavior = html.style.scrollBehavior;
+                                html.style.scrollBehavior = 'auto';
+                                element.scrollIntoView({ behavior: 'auto' });
+                                setTimeout(() => {
+                                    html.style.scrollBehavior = originalScrollBehavior;
+                                }, 50);
+                            }
+                        }}
+                    >
+                        <span style={{ fontSize: '1.25rem', fontWeight: 600 }}>Notify Me at Launch</span>
                     </Link>
                 </div>
             </div>

@@ -17,9 +17,12 @@ const HowItWorks = dynamic(() => import("@/components/HowItWorks"), {
 const Manifesto = dynamic(() => import("@/components/Manifesto"), {
   loading: () => null,
 });
-const DownloadSection = dynamic(() => import("@/components/DownloadSection"), {
+const WaitlistSection = dynamic(() => import("@/components/WaitlistSection"), {
   loading: () => null,
 });
+// const DownloadSection = dynamic(() => import("@/components/DownloadSection"), {
+//   loading: () => null,
+// });
 
 export default function Home() {
   return (
@@ -32,7 +35,8 @@ export default function Home() {
         <div className="ellipse-spacer" />
         <Manifesto />
         <HowItWorks />
-        <DownloadSection />
+        {/* <DownloadSection /> */}
+        <WaitlistSection />
       </MainCard>
       <FAQ
         simple
