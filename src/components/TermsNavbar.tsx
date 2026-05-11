@@ -64,7 +64,7 @@ export default function TermsNavbar() {
                 <div className={`navbar-card ${isScrolled ? 'navbar-card-visible' : ''}`} style={{ opacity: 0, pointerEvents: 'none' }}>
                     <div className="navbar-links">
                         <Link href="#terms" className="navbar-link">Terms of Service</Link>
-                        <Link href="#privacy" className="navbar-link">Privacy Policy</Link>
+                        <Link href="/privacy-policy" className="navbar-link">Privacy Policy</Link>
                     </div>
                 </div>
                 <div className="navbar-spacer" />
@@ -86,9 +86,8 @@ export default function TermsNavbar() {
                             Terms of Service
                         </Link>
                         <Link
-                            href="#privacy"
+                            href="/privacy-policy"
                             className={`navbar-link ${activeSection === 'privacy' ? 'navbar-link--active' : ''}`}
-                            onClick={(e) => handleNavClick(e, '#privacy')}
                         >
                             Privacy Policy
                         </Link>

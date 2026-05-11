@@ -360,7 +360,7 @@ export default function HelpPage() {
 
                                 <h3 style={{ fontSize: '20px', margin: '32px 0 16px', fontWeight: '600', color: 'black' }}>Full Privacy Policy</h3>
                                 <p style={{ marginBottom: '16px' }}>
-                                    For complete details about our data practices, please read our <a href="/terms#privacy" style={{ color: '#0066cc', textDecoration: 'underline' }}>Privacy Policy</a>.
+                                    For complete details about our data practices, please read our <a href="/privacy-policy" style={{ color: '#0066cc', textDecoration: 'underline' }}>Privacy Policy</a>.
                                 </p>
                             </div>
 
@@ -472,7 +472,7 @@ export default function HelpPage() {
 
                                 <h3 style={{ fontSize: '20px', margin: '32px 0 16px', fontWeight: '600', color: 'black' }}>Privacy Policy</h3>
                                 <p style={{ marginBottom: '16px' }}>
-                                    Read our complete <a href="/terms#privacy" style={{ color: '#0066cc', textDecoration: 'underline' }}>Privacy Policy</a> to understand how we handle your data.
+                                    Read our complete <a href="/privacy-policy" style={{ color: '#0066cc', textDecoration: 'underline' }}>Privacy Policy</a> to understand how we handle your data.
                                 </p>
 
                                 <h3 style={{ fontSize: '20px', margin: '32px 0 16px', fontWeight: '600', color: 'black' }}>Age Restrictions</h3>

@@ -10,7 +10,11 @@ export default function Footer() {
                 </Link>
                 <span className="footer-separator">•</span>
                 <Link href="/terms" className="footer-link">
-                    Terms of Service & Privacy Policy
+                    Terms of Service
+                </Link>
+                <span className="footer-separator">•</span>
+                <Link href="/privacy-policy" className="footer-link">
+                    Privacy Policy
                 </Link>
             </div>
             <p className="footer-copyright">
