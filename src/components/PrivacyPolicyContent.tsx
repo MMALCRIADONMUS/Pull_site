@@ -1,7 +1,10 @@
+import Link from "next/link";
+
 const sectionStyle = { margin: "32px 0 16px", fontWeight: 600, color: "black" };
 const subSectionStyle = { margin: "20px 0 12px", fontWeight: 600, color: "rgba(0,0,0,0.8)" };
 const listStyle = { paddingLeft: "24px", marginBottom: "16px" };
 const paragraphStyle = { marginBottom: "16px" };
+const legalLinkStyle = { color: "#0066cc", textDecoration: "underline" };
 
 export default function PrivacyPolicyContent() {
     return (
@@ -108,6 +111,10 @@ export default function PrivacyPolicyContent() {
                     <li>You can disable AI-assisted rule creation to prevent notification content from being sent to our AI service.</li>
                     <li>You can revoke Notification Access and Usage Access through Android Settings.</li>
                 </ul>
+                <p style={paragraphStyle}>
+                    You can also request deletion of data associated with your Pull installation through our{" "}
+                    <Link href="/data-deletion" style={legalLinkStyle}>Data Deletion Request page</Link>.
+                </p>
 
                 <h3 style={sectionStyle}>Subscriptions and Cancellation</h3>
                 <p style={paragraphStyle}>
